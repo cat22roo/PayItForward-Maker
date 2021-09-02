@@ -43,7 +43,7 @@ input{
     border-style: none;
     border: 100px;
   }
-#image-area-2:hover{
+image-area-2:hover{
   opacity:0.5;
   transition:all 0.3s;
 }
