@@ -17,12 +17,27 @@ function removeAllchildren(element) {
   }
 }
 
+// 結果表示エリア&ハムスターの表示制御
+const displaySwitch = {
+  inputMode: () => {
+    // 入力中の表示状態
+    imageDivided.style.display = '';
+    resultDivided.style.display = 'none';
+    happyDivided.style.display = 'none';
+    tweetDivided.style.display = 'none';
+  },
+  resultMode: () => {
+    // 結果表示中の表示状態
+    imageDivided.style.display = 'none';
+    resultDivided.style.display = '';
+    happyDivided.style.display = '';
+    tweetDivided.style.display = '';
+  }
+}
+
 // 入力が始まったら、unusual-hamsterが出現
 // ▼▼▼ 入力が始まったら、happy-hamsterを消したい ▼▼▼ 
-function doInput() {
-  const element = 'image-area-2';
-  document.getElementById('image-area-1').style.display = ""; 
-  }
+userNameInput.onfocus = () => { displaySwitch.inputMode(); } // onchangeだと日本語入力モードで発火しないのでonfocusに
 
 circleButton.onclick = () => {
   const userName = userNameInput.value; // ユーザー入力を取得
@@ -63,6 +78,8 @@ circleButton.onclick = () => {
   const script = document.createElement('script');
   script.setAttribute('src', 'https://platform.twitter.com/widgets.js');
   tweetDivided.appendChild(script);
+  
+  displaySwitch.resultMode();
 }
 
 userNameInput.onkeydown = function (event) {
